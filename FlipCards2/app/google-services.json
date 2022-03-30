@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "109062800599",
+    "firebase_url": "https://android-app-304ee-default-rtdb.firebaseio.com",
+    "project_id": "android-app-304ee",
+    "storage_bucket": "android-app-304ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109062800599:android:856b53153881cad7d8dc92",
+        "android_client_info": {
+          "package_name": "com.example.flipcards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "109062800599-bltai06jmoemqiufa3c9u2l19n2cc7v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRllJ9kgj_4GBEub80lh5M9m_iKeanssc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "109062800599-bltai06jmoemqiufa3c9u2l19n2cc7v0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
