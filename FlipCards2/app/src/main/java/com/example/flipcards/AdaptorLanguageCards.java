@@ -23,6 +23,10 @@ public class AdaptorLanguageCards extends RecyclerView.Adapter<AdaptorLanguageCa
         cardDeckClickListener = listener;
     }
 
+    public void filterList(ArrayList<CardDeckItem> filterList) {
+        cardDecksList = filterList;
+        notifyDataSetChanged();
+    }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -66,4 +70,5 @@ public class AdaptorLanguageCards extends RecyclerView.Adapter<AdaptorLanguageCa
     public int getItemCount() {
         return cardDecksList.size();
     }
+
 }
