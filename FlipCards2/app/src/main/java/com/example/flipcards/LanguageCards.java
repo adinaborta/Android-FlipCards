@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class LanguageCards extends AppCompatActivity implements OnCardDeckClickListener {
@@ -71,7 +76,29 @@ public class LanguageCards extends AppCompatActivity implements OnCardDeckClickL
                 filter(editable.toString());
             }
         });
+
+        // share function
+        Button button = (Button) findViewById(R.id.sharebutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                EditText searchText = findViewById(R.id.sharetext);
+                shareText(searchText.getText().toString());
+                //testingShowAlertDialogButtonClicked(v, searchText.getText().toString());
+            }
+        });
     }
+
+    private void shareText(String message) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, message);
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
+    }
+
+
 
     private void filter(String text) {
         ArrayList<CardDeckItem> filterList = new ArrayList<>();
@@ -118,5 +145,19 @@ public class LanguageCards extends AppCompatActivity implements OnCardDeckClickL
     }
 
 
+    private void testingShowAlertDialogButtonClicked(View view, String message) {
+
+        // setup the alert builder
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("My box title");
+        builder.setMessage(message);
+
+        // add a button
+        builder.setPositiveButton("OK", null);
+
+        // create and show the alert dialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 
 }
