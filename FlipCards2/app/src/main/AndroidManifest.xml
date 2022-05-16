@@ -17,6 +17,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- Deeplinks -->
+            <!-- Accepts URIs that begin with "flip://cards" -->
+            <intent-filter android:label="@string/filter_view_example_flipcards">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="flip"
+                    android:host="cards" />
+            </intent-filter>
+
         </activity>
 
     </application>
