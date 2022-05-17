@@ -5,4 +5,8 @@
     <string name="text_to_share">Text to share</string>
     <string name="card_text">card text</string>
     <string name="search_here">Search here</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

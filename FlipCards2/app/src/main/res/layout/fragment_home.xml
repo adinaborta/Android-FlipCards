@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.HomeFragment" >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".LanguageCards">
+
+        <LinearLayout
+            android:id="@+id/share"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_blue"
+            android:padding="4dp"
+            android:layout_alignParentStart="true"
+            >
+
+            <Button
+                android:id="@+id/sharebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/share"
+                android:layout_margin="4dp"
+                />
+
+            <EditText
+                android:id="@+id/sharetext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_to_share"
+                android:layout_margin="4dp"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/notif"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_pink"
+            android:padding="4dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/share"
+            >
+
+            <Button
+                android:id="@+id/notifbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notify"
+                android:layout_margin="4dp"
+                />
+
+            <EditText
+                android:id="@+id/notiftext"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:hint="@string/card_text"
+                android:layout_margin="4dp"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/searchtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_here"
+            android:layout_margin="4dp"
+            android:layout_below="@+id/notif"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cardDecks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_blue"
+            android:padding="4dp"
+            android:scrollbars="vertical"
+            android:layout_below="@+id/searchtext"
+            />
+
+        <androidx.fragment.app.FragmentContainerView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/fragmentContainerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_scene" />
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
