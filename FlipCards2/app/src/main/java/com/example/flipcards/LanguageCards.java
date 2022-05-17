@@ -8,7 +8,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.AdapterView;
+import android.widget.Filter;
+import android.widget.SearchView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,7 +31,7 @@ import java.util.Locale;
 
 public class LanguageCards extends AppCompatActivity implements OnCardDeckClickListener {
     private RecyclerView reciclerView;
-    private RecyclerView.Adapter adapter;
+    private AdaptorLanguageCards adapter;
     private RecyclerView.LayoutManager layoutManager;
 
     public static String CARD_ENGLISH = "";
@@ -85,4 +90,26 @@ public class LanguageCards extends AppCompatActivity implements OnCardDeckClickL
         reciclerView.setAdapter(adapter);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.cards_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                adapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        return true;
+    }
 }

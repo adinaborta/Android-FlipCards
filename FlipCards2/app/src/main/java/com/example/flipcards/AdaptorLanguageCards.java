@@ -3,6 +3,8 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,17 +14,19 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
-public class AdaptorLanguageCards extends RecyclerView.Adapter<AdaptorLanguageCards.MyViewHolder>{
+public class AdaptorLanguageCards extends RecyclerView.Adapter<AdaptorLanguageCards.MyViewHolder> implements Filterable{
     private ArrayList<CardDeckItem> cardDecksList;
+    private ArrayList<CardDeckItem> cardDecksListFull;
 
     public static OnCardDeckClickListener cardDeckClickListener;
 
     public AdaptorLanguageCards(ArrayList<CardDeckItem> cardDecksList, OnCardDeckClickListener listener) {
         this.cardDecksList = cardDecksList;
+        this.cardDecksListFull = new ArrayList<>(cardDecksList);
         cardDeckClickListener = listener;
     }
-
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
@@ -66,4 +70,38 @@ public class AdaptorLanguageCards extends RecyclerView.Adapter<AdaptorLanguageCa
     public int getItemCount() {
         return cardDecksList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return cardDecksFilter;
+    }
+
+    private Filter cardDecksFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            ArrayList<CardDeckItem> filteredList = new ArrayList<>();
+
+            if(charSequence == null || charSequence.length() == 0){
+                filteredList.addAll(cardDecksListFull);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for(CardDeckItem item: cardDecksListFull){
+                    if(item.getCardDeckTitle().toLowerCase().contains(filterPattern)){
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            cardDecksList.clear();
+            cardDecksList.addAll((ArrayList)filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
 }

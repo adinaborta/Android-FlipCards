@@ -44,6 +44,8 @@ public class SceneFragment extends Fragment {
             TextView cardTextView = view.findViewById(R.id.cardText);
             String title = bundle.getString(CARD_ENGLISH);
             cardTextView.setText(title);
+            int id = getResources().getIdentifier(title, "drawable", getContext().getPackageName());
+            cardImageView.setImageResource(id);
         }
 
         card = view.findViewById(R.id.cardFront);
