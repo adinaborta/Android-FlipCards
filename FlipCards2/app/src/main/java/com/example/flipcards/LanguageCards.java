@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,6 +29,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import android.widget.Button;
+
+import android.view.View;
 
 public class LanguageCards extends AppCompatActivity implements OnCardDeckClickListener {
     private RecyclerView reciclerView;
@@ -72,6 +77,13 @@ public class LanguageCards extends AppCompatActivity implements OnCardDeckClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language_cards);
+        Button switchToSecondActivity = (Button) findViewById(R.id.go_to_main);
+        switchToSecondActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchActivities();
+            }
+        });
 
         ArrayList<CardDeckItem> cardDecks = new ArrayList<>();
         cardDecks.add(new CardDeckItem("Insects", "", R.drawable.butterfly));
@@ -111,5 +123,10 @@ public class LanguageCards extends AppCompatActivity implements OnCardDeckClickL
             }
         });
         return true;
+    }
+
+    private void switchActivities() {
+        Intent switchActivityIntent = new Intent(this, MainActivity.class);
+        startActivity(switchActivityIntent);
     }
 }

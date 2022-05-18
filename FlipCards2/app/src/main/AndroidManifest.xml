@@ -11,14 +11,28 @@
         android:theme="@style/Theme.FlipCards">
         <activity
             android:name=".LanguageCards"
-            android:exported="true">
+            android:exported="true"
+            android:label="@string/title_activity_main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
 
+            <!-- Deeplinks -->
+            <!-- Accepts URIs that begin with "flip://cards" -->
+            <intent-filter android:label="@string/filter_view_example_flipcards">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="flip"
+                    android:host="cards" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
